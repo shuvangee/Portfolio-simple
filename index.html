@@ -13,13 +13,13 @@
     <header class="site-header">
       <a class="brand" href="index.html" aria-label="Shuvangee home">Shuvangee</a>
       <nav class="top-links" aria-label="Contact links">
-        <a class="icon-link" href="mailto:shuvangee@example.com" aria-label="Email Shuvangee">
+        <a class="icon-link" href="https://mail.google.com/mail/?view=cm&fs=1&to=shuvangee.seth2027%40gmail.com" target="_blank" rel="noreferrer" aria-label="Email Shuvangee in Gmail">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>
         </a>
-        <a class="icon-link" href="https://github.com/" target="_blank" rel="noreferrer" aria-label="GitHub profile">
+        <a class="icon-link" href="https://github.com/shuvangee" target="_blank" rel="noreferrer" aria-label="GitHub profile">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-6.5a5.1 5.1 0 0 0-1.4-3.6 4.8 4.8 0 0 0-.1-3.4s-1.1-.3-3.5 1.3a12.2 12.2 0 0 0-6 0C6.6.7 5.5 1 5.5 1a4.8 4.8 0 0 0-.1 3.4A5.1 5.1 0 0 0 4 8c0 4.5 3 6.5 6 6.5-.4.4-.8 1.1-.9 2.1-1.7.8-3.1.3-4.1-1.3 0 0-.8-1.5-2-1.6 0 0-1.3 0-.1.8 0 0 .9.4 1.5 2 0 0 .8 2.6 4.6 1.8V22"/></svg>
         </a>
-        <a class="icon-link" href="https://www.linkedin.com/" target="_blank" rel="noreferrer" aria-label="LinkedIn profile">
+        <a class="icon-link" href="https://www.linkedin.com/in/shuvangee-seth" target="_blank" rel="noreferrer" aria-label="LinkedIn profile">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><path d="M2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
         </a>
         <a class="resume-link" href="resume.html">Resume</a>
@@ -27,35 +27,192 @@
     </header>
 
     <main>
-      <section class="hero landing-hero">
-        <div class="hero-copy">
-          <h1>Hi, I am <span>Shuvangee</span>.</h1>
-          <p>Turning "this could be easier" into products.</p>
-          <a class="scroll-cue" href="#sections" aria-label="Scroll to sections">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="m5 12 7 7 7-7"/></svg>
+      <section class="landing-page" aria-label="Introduction">
+        <div class="landing-copy">
+          <h1><span>Hello,</span><span>my name is</span><strong>Shuvangee.</strong></h1>
+          <p>I turn "this could be easier" into products.</p>
+        </div>
+        <div class="landing-spacer"></div>
+        <a class="scroll-arrow" href="#experience" aria-label="Scroll to experience and education">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="m5 12 7 7 7-7"/></svg>
+        </a>
+      </section>
+
+      <section class="info-section" id="experience" aria-label="Experience and education">
+        <div class="experience-panel">
+          <p class="eyebrow">Experience</p>
+          <div class="experience-list">
+            <article>
+              <h2>
+                <a class="inline-page-link" href="research.html">
+                  Research
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg>
+                </a>
+              </h2>
+              <div class="experience-copy">
+                <p>IOWarp / CLIO Core</p>
+                <ul>
+                  <li>Researching HPC data management for AI-assisted scientific workflows, with a focus on filesystem search, indexing, and storage benchmarking.</li>
+                  <li>Contributing to CLIO Core by testing macOS filesystem support and comparing systems like CephFS and OrangeFS on the Ares cluster.</li>
+                </ul>
+              </div>
+            </article>
+            <article>
+              <h2>Aether Intelligence</h2>
+              <div class="experience-copy">
+                <p>Software Engineering Intern</p>
+                <ul>
+                  <li>Built a Python + MySQL crop recommendation pipeline using 10,000+ weather data points.</li>
+                  <li>Raised model accuracy from 74% to 87% across 5 classifiers and deployed it as a REST API.</li>
+                </ul>
+              </div>
+            </article>
+            <article>
+              <h2>Teaching Assistant</h2>
+              <div class="experience-copy">
+                <div class="ta-grid">
+                  <section>
+                    <p>CS351: Systems Programming</p>
+                    <span>Weekly C, memory management, and POSIX labs for 40+ students; reviewed code and built exercises adopted across 3 sections.</span>
+                  </section>
+                  <section>
+                    <p>Microsoft TEALS: AP CS Principles</p>
+                    <span>Led weekly 3-hour labs for 30 students and designed Scratch/Python exercises that boosted pass rates by 20%.</span>
+                  </section>
+                  <section>
+                    <p>CS331: Data Structures and Algorithms</p>
+                    <span>Supported labs and office hours on recursion, sorting, trees, and core algorithmic problem-solving.</span>
+                  </section>
+                  <section>
+                    <p>CS100: Intro to CS</p>
+                    <span>Helped 100+ students build OOP fundamentals; graded 200+ assignments per semester and refined 4 lab modules.</span>
+                  </section>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <aside class="details-panel">
+          <div class="mini-detail detail-card">
+            <div class="school-logo" aria-label="Illinois Tech logo">Illinois<br />Tech</div>
+            <div>
+              <p class="eyebrow">Education</p>
+              <h2>Illinois Institute of Tech</h2>
+              <p>Bachelor of Science in Computer Science</p>
+              <p>GPA: 3.8 / 4.0</p>
+              <p>Dean's List: Spring '24 - Spring '26</p>
+            </div>
+          </div>
+
+          <div class="mini-detail detail-card">
+            <img class="detail-image book-cover" src="assets/kingdom-of-ash.png" alt="Kingdom of Ash book cover" />
+            <div>
+              <p class="eyebrow">Current Read</p>
+              <details class="read-card">
+                <summary>Throne of Glass Series: Kingdom of Ash<br /><span>by Sarah J. Maas</span></summary>
+                <p class="previous-label">My previous reads:</p>
+                <ul>
+                  <li>Crescent City series by SJM</li>
+                  <li>A Court of Thorns and Roses series by SJM</li>
+                  <li>The Palace of Illusions by Chitra Banerjee Divakaruni</li>
+                </ul>
+              </details>
+            </div>
+          </div>
+
+          <div class="mini-detail detail-card hobby-card">
+            <svg class="detail-icon coffee-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 8h11v5a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5V8Z" />
+              <path d="M16 10h2a3 3 0 0 1 0 6h-2" />
+              <path d="M4 21h14" />
+              <path d="M8 4c-.7.8-.7 1.7 0 2.5" />
+              <path d="M12 4c-.7.8-.7 1.7 0 2.5" />
+              <path d="M16 4c-.7.8-.7 1.7 0 2.5" />
+            </svg>
+            <div>
+              <p class="eyebrow">Current Hobby</p>
+              <p>Trying coffee places in Chicago, crocheting, reading.</p>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="projects-section" id="projects" aria-label="Projects">
+        <div class="section-heading">
+          <p class="eyebrow">Projects</p>
+        </div>
+        <div class="project-grid">
+          <a class="project-item" href="https://github.com/shuvangee/research-compass-ai" target="_blank" rel="noreferrer">
+            <span>01</span>
+            <h3>Research Compass AI</h3>
+            <p><strong>Next.js, FastAPI, PostgreSQL, OpenAI, AWS, Neo4j, Vector DB</strong></p>
+            <p>AI research explorer indexing 10,000+ papers, mapping citations, detecting gaps with RAG, graph analytics, clustering, and LLM reasoning.</p>
+          </a>
+          <a class="project-item" href="https://github.com/shuvangee/crop-recommendation-ml-pipeline" target="_blank" rel="noreferrer">
+            <span>02</span>
+            <h3>Crop Recommendation ML Pipeline</h3>
+            <p><strong>Python, Scikit-learn, MySQL, REST API</strong></p>
+            <p>Built ingestion-to-API ML pipeline and reached 87% accuracy across Random Forest, KNN, SVM, Naive Bayes, and Decision Tree models.</p>
+          </a>
+          <a class="project-item" href="https://github.com/shuvangee/f1-database-management-system" target="_blank" rel="noreferrer">
+            <span>03</span>
+            <h3>F1 Database Management System</h3>
+            <p><strong>Python, MySQL, Tabulate</strong></p>
+            <p>Created role-based Admin/User CLI over 8 relational tables and optimized JOIN queries to reduce response time by 40%.</p>
+          </a>
+          <a class="project-item" href="https://github.com/shuvangee/data-visualization-portfolio" target="_blank" rel="noreferrer">
+            <span>04</span>
+            <h3>Data Visualization Portfolio</h3>
+            <p><strong>Tableau, Excel, A/B Testing</strong></p>
+            <p>Analyzed 5 datasets, defined KPIs, ran A/B tests, and built interactive Tableau dashboards with drill-down filters.</p>
           </a>
         </div>
       </section>
 
-      <section class="split-grid" id="sections" aria-label="Portfolio sections">
-        <a class="split-panel panel-home" href="home.html" data-expand-card>
-          <h2>Home</h2>
-          <span>click to expand &gt;</span>
-        </a>
-        <a class="split-panel panel-experience" href="experience.html" data-expand-card>
-          <h2>Experience</h2>
-          <span>click to expand &gt;</span>
-        </a>
-        <a class="split-panel panel-work" href="work.html" data-expand-card>
-          <h2>Work</h2>
-          <span>click to expand &gt;</span>
-        </a>
-        <a class="split-panel panel-beyond" href="beyond-code.html" data-expand-card>
-          <h2>Beyond Code</h2>
-          <span>click to expand &gt;</span>
-        </a>
+      <section class="beyond-section" id="beyond-code" aria-label="Beyond code">
+        <div class="section-heading">
+          <p class="eyebrow">Beyond Code</p>
+        </div>
+        <div class="insta-grid">
+          <button class="post-tile" type="button" data-post="0" aria-label="Open design notes post">
+            <span>Design notes</span>
+          </button>
+          <button class="post-tile" type="button" data-post="1" aria-label="Open campus days post">
+            <span>Campus days</span>
+          </button>
+          <button class="post-tile" type="button" data-post="2" aria-label="Open current reads post">
+            <span>Current reads</span>
+          </button>
+          <button class="post-tile" type="button" data-post="3" aria-label="Open hobby desk post">
+            <span>Hobby desk</span>
+          </button>
+          <button class="post-tile" type="button" data-post="4" aria-label="Open reset rituals post">
+            <span>Reset rituals</span>
+          </button>
+          <button class="post-tile" type="button" data-post="5" aria-label="Open tiny ideas post">
+            <span>Tiny ideas</span>
+          </button>
+        </div>
       </section>
     </main>
+
+    <div class="post-modal" id="post-modal" aria-hidden="true">
+      <div class="post-dialog" role="dialog" aria-modal="true" aria-labelledby="post-title">
+        <button class="modal-close" type="button" aria-label="Close post">Close</button>
+        <button class="modal-arrow modal-prev" type="button" aria-label="Previous picture">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <div class="modal-photo" aria-label="Blank photo placeholder"></div>
+        <button class="modal-arrow modal-next" type="button" aria-label="Next picture">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+        <div class="modal-caption">
+          <p id="post-title">Design notes</p>
+          <span id="post-counter">1 / 3</span>
+        </div>
+      </div>
+    </div>
 
     <footer>made with ❤️ by shuvangee</footer>
     <script src="script.js"></script>
