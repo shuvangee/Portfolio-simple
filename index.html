@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shuvangee | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Shuvangee home">Shuvangee</a>
+      <nav class="top-links" aria-label="Contact links">
+        <a class="icon-link" href="mailto:shuvangee@example.com" aria-label="Email Shuvangee">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>
+        </a>
+        <a class="icon-link" href="https://github.com/" target="_blank" rel="noreferrer" aria-label="GitHub profile">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-6.5a5.1 5.1 0 0 0-1.4-3.6 4.8 4.8 0 0 0-.1-3.4s-1.1-.3-3.5 1.3a12.2 12.2 0 0 0-6 0C6.6.7 5.5 1 5.5 1a4.8 4.8 0 0 0-.1 3.4A5.1 5.1 0 0 0 4 8c0 4.5 3 6.5 6 6.5-.4.4-.8 1.1-.9 2.1-1.7.8-3.1.3-4.1-1.3 0 0-.8-1.5-2-1.6 0 0-1.3 0-.1.8 0 0 .9.4 1.5 2 0 0 .8 2.6 4.6 1.8V22"/></svg>
+        </a>
+        <a class="icon-link" href="https://www.linkedin.com/" target="_blank" rel="noreferrer" aria-label="LinkedIn profile">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><path d="M2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a class="resume-link" href="resume.html">Resume</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero landing-hero">
+        <div class="hero-copy">
+          <h1>Hi, I am <span>Shuvangee</span>.</h1>
+          <p>Turning "this could be easier" into products.</p>
+          <a class="scroll-cue" href="#sections" aria-label="Scroll to sections">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="m5 12 7 7 7-7"/></svg>
+          </a>
+        </div>
+      </section>
+
+      <section class="split-grid" id="sections" aria-label="Portfolio sections">
+        <a class="split-panel panel-home" href="home.html" data-expand-card>
+          <h2>Home</h2>
+          <span>click to expand &gt;</span>
+        </a>
+        <a class="split-panel panel-experience" href="experience.html" data-expand-card>
+          <h2>Experience</h2>
+          <span>click to expand &gt;</span>
+        </a>
+        <a class="split-panel panel-work" href="work.html" data-expand-card>
+          <h2>Work</h2>
+          <span>click to expand &gt;</span>
+        </a>
+        <a class="split-panel panel-beyond" href="beyond-code.html" data-expand-card>
+          <h2>Beyond Code</h2>
+          <span>click to expand &gt;</span>
+        </a>
+      </section>
+    </main>
+
+    <footer>made with ❤️ by shuvangee</footer>
+    <script src="script.js"></script>
+  </body>
+</html>
