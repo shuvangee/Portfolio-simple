@@ -1,50 +1,24 @@
 const posts = [
   {
-    title: "Design notes",
+    title: "Techicago Week",
+    image: "assets/accelerate-chicago-techicago-2026.jpg",
     captions: [
-      "Sketching interfaces that feel quieter and easier to use.",
-      "Blank placeholder for another design note.",
-      "A tiny layout idea saved for later."
+      "Volunteered at Accelerate Chicago for Techicago Week 2026"
     ]
   },
   {
-    title: "Campus days",
+    title: "SOAR",
+    image: "assets/soar-iit-2026.jpg",
+    images: [
+      "assets/soar-iit-2026.jpg",
+      "assets/soar-iit-2026-2.gif",
+      "assets/soar-iit-2026-3.jpg",
+      "assets/soar-iit-2026-4.jpg",
+      "assets/soar-iit-2026-5.jpg",
+      "assets/soar-iit-2026-6.jpg"
+    ],
     captions: [
-      "Little moments from student life at Illinois Tech.",
-      "A placeholder for a campus snapshot.",
-      "A soft pause between classes and projects."
-    ]
-  },
-  {
-    title: "Current reads",
-    captions: [
-      "Books and essays that make product thinking sharper.",
-      "A reading list placeholder.",
-      "Notes from something worth remembering."
-    ]
-  },
-  {
-    title: "Hobby desk",
-    captions: [
-      "Journals, sketches, and tiny product ideas.",
-      "A placeholder for the desk setup.",
-      "Where quiet hobbies turn into new ideas."
-    ]
-  },
-  {
-    title: "Reset rituals",
-    captions: [
-      "Music, walks, and small routines that reset the day.",
-      "A blank frame for a reset moment.",
-      "Simple things that make work feel lighter."
-    ]
-  },
-  {
-    title: "Tiny ideas",
-    captions: [
-      "The small problems that become project prompts.",
-      "A placeholder for idea scraps.",
-      "Collected thoughts for future builds."
+      "SOAR @ IIT 2026"
     ]
   }
 ];
@@ -52,6 +26,7 @@ const posts = [
 const modal = document.querySelector("#post-modal");
 const postTitle = document.querySelector("#post-title");
 const postCounter = document.querySelector("#post-counter");
+const modalPhoto = document.querySelector(".modal-photo");
 const closeButton = document.querySelector(".modal-close");
 const prevButton = document.querySelector(".modal-prev");
 const nextButton = document.querySelector(".modal-next");
@@ -60,8 +35,15 @@ let activeSlide = 0;
 
 function renderPost() {
   const post = posts[activePost];
-  postTitle.textContent = post.captions[activeSlide];
-  postCounter.textContent = `${activeSlide + 1} / ${post.captions.length}`;
+  const images = post.images || (post.image ? [post.image] : []);
+  const caption = post.captions[activeSlide] || post.captions[0];
+  const image = images[activeSlide] || images[0];
+  const total = Math.max(images.length, post.captions.length);
+
+  postTitle.textContent = caption;
+  postCounter.textContent = `${activeSlide + 1} / ${total}`;
+  modalPhoto.style.backgroundImage = image ? `url("${image}")` : "";
+  modalPhoto.classList.toggle("has-image", Boolean(image));
 }
 
 function openPost(index) {
@@ -81,7 +63,8 @@ function closePost() {
 }
 
 function changeSlide(direction) {
-  const total = posts[activePost].captions.length;
+  const post = posts[activePost];
+  const total = Math.max((post.images || []).length, post.captions.length);
   activeSlide = (activeSlide + direction + total) % total;
   renderPost();
 }

@@ -124,10 +124,7 @@ button {
   padding-right: clamp(18px, 5vw, 40px);
 }
 
-.landing-page,
-.info-section,
-.projects-section,
-.beyond-section {
+.landing-page {
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
@@ -487,8 +484,8 @@ p {
   transition: background 180ms ease, transform 180ms ease;
 }
 
-.project-item:hover,
-.project-item:focus-visible {
+.project-item[href]:hover,
+.project-item[href]:focus-visible {
   background: var(--soft);
   outline: none;
   transform: translateY(-3px);
@@ -531,6 +528,26 @@ p {
   transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
 }
 
+.post-tile img {
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+}
+
+.post-tile.has-photo {
+  overflow: hidden;
+  position: relative;
+}
+
+.post-tile.has-photo::after {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(32, 17, 24, 0.45));
+  content: "";
+  inset: 0;
+  position: absolute;
+}
+
 .post-tile:hover,
 .post-tile:focus-visible {
   background: var(--soft);
@@ -543,6 +560,8 @@ p {
   background: rgba(255, 255, 255, 0.78);
   border: 1px solid var(--line);
   padding: 8px 10px;
+  position: relative;
+  z-index: 1;
 }
 
 .post-modal {
@@ -590,11 +609,17 @@ p {
 
 .modal-photo {
   background: #f7f1f3;
+  background-position: center;
+  background-size: cover;
   border-left: 1px solid var(--line);
   border-right: 1px solid var(--line);
   grid-column: 2;
   grid-row: 2;
   min-height: 280px;
+}
+
+.modal-photo.has-image {
+  background-color: #111;
 }
 
 .modal-arrow {
@@ -703,25 +728,19 @@ p {
 }
 
 .research-links {
-  display: grid;
-  gap: 8px;
-  margin-top: 20px;
-}
-
-.research-links p {
-  color: var(--muted);
-  margin-bottom: 0;
-}
-
-.research-links span {
-  color: var(--text);
-  font-weight: 800;
+  align-items: start;
+  display: inline-grid;
+  gap: 2px;
+  margin-top: 12px;
 }
 
 .research-links a {
-  border-bottom: 1px solid var(--line);
   color: var(--maroon);
-  font-weight: 700;
+  font-size: 0.92rem;
+  font-weight: 800;
+  line-height: 1.35;
+  border-bottom: 1px solid var(--line);
+  width: max-content;
 }
 
 .research-links a:hover,
@@ -760,6 +779,24 @@ p {
   border: 1px solid var(--line);
   max-width: 760px;
   padding: clamp(24px, 5vw, 42px);
+}
+
+.resume-download {
+  border: 1px solid var(--line);
+  color: var(--maroon);
+  display: inline-flex;
+  font-weight: 800;
+  margin-top: 8px;
+  padding: 10px 14px;
+  transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.resume-download:hover,
+.resume-download:focus-visible {
+  background: var(--soft);
+  border-color: var(--maroon);
+  outline: none;
+  transform: translateY(-2px);
 }
 
 .resume-panel h2,
