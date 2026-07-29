@@ -18,20 +18,145 @@
 
     <main class="research-page">
       <section class="research-hero">
-        <div class="research-title-row">
-          <p class="eyebrow">IOWarp</p>
-        </div>
+        <p class="eyebrow">Research</p>
+        <h1>IOWARP / CLIO Core<br />Research Contributions</h1>
         <div class="research-links" aria-label="IOWarp links">
-          <a href="https://grc.iit.edu/research/projects/iowarp" target="_blank" rel="noreferrer">Full Description</a>
-          <a href="https://github.com/iowarp/clio-core#quickstart" target="_blank" rel="noreferrer">Main Repository</a>
-          <a href="https://github.com/shuvangee/clio-core" target="_blank" rel="noreferrer">My Contributions</a>
+          <a href="https://grc.iit.edu/research/projects/iowarp/" target="_blank" rel="noreferrer">
+            <span>01</span>
+            <strong>What is IOWARP / CLIO Core?</strong>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </a>
+          <a href="https://github.com/iowarp/clio-core" target="_blank" rel="noreferrer">
+            <span>02</span>
+            <strong>Main Repository</strong>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </a>
+          <a href="https://github.com/shuvangee/clio-core" target="_blank" rel="noreferrer">
+            <span>03</span>
+            <strong>My Contributions</strong>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </a>
         </div>
       </section>
 
-      <section class="report-log" aria-label="Daily research updates">
-        <article>
-          <time datetime="2026-06-30">June 30, 2026</time>
-          <p>Deployed a single-node CephFS instance on Ares after finding the CephFS scripts on the compute node. Verified mon, mgr, mds, and osd services were running on ares-comp-08, then documented that mounting was blocked by sudo/password access.</p>
+      <section class="research-overview" aria-labelledby="working-on">
+        <p class="eyebrow">Current Research</p>
+        <h2 id="working-on">What I’m Working On</h2>
+        <div class="research-overview-copy">
+          <p>I am currently working with the IOWARP / CLIO Core team on optimizing filesystem search at scale. CLIO provides a filesystem adapter and semantic search capabilities, but the current search approach can be slow because it may scan the entire filesystem for matching content. My summer research focuses on adding an indexing layer to improve semantic search performance, reduce unnecessary scan operations, and make filesystem search more efficient for AI-assisted workflows.</p>
+          <p>As part of this work, I am deploying CLIO on IIT’s Ares computing cluster, benchmarking it against comparison systems such as CephFS and OrangeFS, and evaluating both text-based and vector embedding approaches for search indexing. I am also debugging a macOS fallback-runtime issue where the MAIN runtime daemon intermittently fails to bind its control socket.</p>
+        </div>
+        <p class="focus-areas"><strong>Focus areas:</strong> Semantic search indexing, filesystem adapters, distributed systems, Ares cluster deployment, CephFS / OrangeFS benchmarking, macOS runtime debugging, and performance evaluation.</p>
+      </section>
+
+      <section class="weekly-contributions" aria-labelledby="weekly-title">
+        <div class="section-heading">
+          <p class="eyebrow">Research Log</p>
+          <h2 id="weekly-title">Weekly Contributions</h2>
+        </div>
+
+        <article class="week-entry">
+          <header>
+            <p>Week 1</p>
+            <time datetime="2026-06-15">June 15 – June 21, 2026</time>
+            <h3>macFUSE Support for CLIO Core, Issue #550</h3>
+          </header>
+          <div class="week-details">
+            <section>
+              <h4>Situation <a href="https://github.com/iowarp/clio-core/issues/550" target="_blank" rel="noreferrer">View issue <span>↗</span></a></h4>
+              <p>CLIO Core’s FUSE adapter worked for Linux-based filesystem mounting, but it did not compile correctly on macOS with macFUSE.</p>
+            </section>
+            <section>
+              <h4>Task</h4>
+              <p>Add macFUSE support by resolving macOS build issues, creating a FUSE build preset, preventing test hangs, and validating the adapter through automated tests.</p>
+            </section>
+            <section>
+              <h4>Action <a href="https://github.com/shuvangee/clio-core-myfork/tree/%23550-mac-fuse-support" target="_blank" rel="noreferrer">View my branch <span>↗</span></a></h4>
+              <p>Reproduced compiler failures in <code>fuse_cte.cc</code>, resolved incompatible callback signatures and Linux-only mount flags, added platform-specific handling, configured the <code>release-mac-fuse</code> CMake preset, and fixed test cleanup.</p>
+            </section>
+            <section class="result">
+              <h4>Result <a href="https://github.com/iowarp/clio-core/commit/40a879051270cc69d489b1c0f659f6f56df92c9f" target="_blank" rel="noreferrer">View pull request <span>↗</span></a></h4>
+              <p>The adapter compiled successfully on macOS, the macFUSE configuration completed, and all 13 of 13 FUSE tests passed in approximately nine seconds.</p>
+            </section>
+          </div>
+        </article>
+
+        <article class="week-entry">
+          <header>
+            <p>Week 2</p>
+            <time datetime="2026-06-22">June 22 – June 28, 2026</time>
+            <h3>macOS Issue Review and Runtime Debugging Scope</h3>
+          </header>
+          <div class="week-details">
+            <section>
+              <h4>Situation</h4>
+              <p>Issue #634 caused intermittent CLIO runtime failures involving the MAIN daemon and its control socket. I needed to determine whether it was related to the macFUSE work in Issue #550.</p>
+            </section>
+            <section>
+              <h4>Task</h4>
+              <p>Compare the two issues, understand their causes, and avoid mixing unrelated runtime changes into the macFUSE support branch.</p>
+            </section>
+            <section>
+              <h4>Action <a href="https://github.com/iowarp/clio-core/issues/634" target="_blank" rel="noreferrer">View issue <span>↗</span></a></h4>
+              <p>Reviewed runtime startup failures, Unix-domain socket behavior, worker wakeups, and connection retries, then compared those components with the FUSE adapter files changed for Issue #550.</p>
+            </section>
+            <section class="result">
+              <h4>Result</h4>
+              <p>Confirmed the issues affected separate subsystems: macFUSE mounting versus runtime daemon startup and control-socket reliability. This kept the macFUSE contribution focused.</p>
+            </section>
+          </div>
+        </article>
+
+        <article class="week-entry">
+          <header>
+            <p>Week 3</p>
+            <time datetime="2026-06-29">June 29 – July 5, 2026</time>
+            <h3>CLIO Quickstart Validation and Ares Cluster Setup</h3>
+          </header>
+          <div class="week-details">
+            <section>
+              <h4>Situation</h4>
+              <p>After local macOS work, I needed to validate CLIO’s README Quickstart and prepare IIT’s Ares cluster for deployment and benchmarking.</p>
+            </section>
+            <section>
+              <h4>Task</h4>
+              <p>Run the Quickstart workflow, confirm runtime behavior, access Ares, and prepare the CLIO repository for cluster-based work.</p>
+            </section>
+            <section>
+              <h4>Action</h4>
+              <p>Started the runtime, tested context creation, regular and semantic retrieval, and cleanup. Connected to Ares through SSH, used Slurm for compute access, and configured fork and upstream branches.</p>
+            </section>
+            <section class="result">
+              <h4>Result</h4>
+              <p>Completed the Quickstart successfully and established a working Ares setup on <code>ares-comp-08</code> for future cluster builds and benchmarking.</p>
+            </section>
+          </div>
+        </article>
+
+        <article class="week-entry">
+          <header>
+            <p>Week 4</p>
+            <time datetime="2026-06-29">June 29 – July 5, 2026</time>
+            <h3>CephFS Deployment on Ares</h3>
+          </header>
+          <div class="week-details">
+            <section>
+              <h4>Situation</h4>
+              <p>CephFS needed to be deployed on Ares for later comparison with CLIO, but it was not available as a normal environment module.</p>
+            </section>
+            <section>
+              <h4>Task</h4>
+              <p>Locate the deployment tools, create a small compute-node test deployment, verify filesystem health, and identify mounting blockers.</p>
+            </section>
+            <section>
+              <h4>Action</h4>
+              <p>Located the package at <code>/mnt/common/xcatcadmin/ceph_deploy</code>, requested a one-node Slurm allocation, and deployed a one-node <code>myfs</code> instance with 1 GiB capacity, one OSD, and replication factor one.</p>
+            </section>
+            <section class="result">
+              <h4>Result</h4>
+              <p>Started the monitor, manager, metadata server, and OSD; verified healthy, active and clean placement groups; and identified the need for sudo or <code>sudo_cephfs</code> group access before mounting and benchmarking.</p>
+            </section>
+          </div>
         </article>
       </section>
     </main>

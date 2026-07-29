@@ -13,7 +13,7 @@
     <header class="site-header">
       <a class="brand" href="index.html" aria-label="Shuvangee home">Shuvangee</a>
       <nav class="top-links" aria-label="Contact links">
-        <a class="icon-link" href="https://mail.google.com/mail/?view=cm&fs=1&to=shuvangee.seth2027%40gmail.com" target="_blank" rel="noreferrer" aria-label="Email Shuvangee in Gmail">
+        <a class="icon-link email-link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=shuvangee.seth2027%40gmail.com" target="_blank" rel="noreferrer" data-email="shuvangee.seth2027@gmail.com" aria-label="Email Shuvangee">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>
         </a>
         <a class="icon-link" href="https://github.com/shuvangee" target="_blank" rel="noreferrer" aria-label="GitHub profile">
@@ -26,9 +26,23 @@
       </nav>
     </header>
 
-    <main>
-      <section class="landing-page" aria-label="Introduction">
+    <nav class="section-nav" aria-label="Page sections">
+      <a href="#home" class="is-active" aria-current="location">Home</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#testimonial">Testimonial</a>
+      <a href="#contact">Contact</a>
+      <a href="#beyond-code">Beyond Code</a>
+    </nav>
+
+    <main class="page-content">
+      <section class="landing-page" id="home" aria-label="Introduction">
         <div class="landing-copy">
+          <p class="availability-status">
+            <span aria-hidden="true"></span>
+            Seeking Fall 2026 &amp; Full-time AI/ML, software, data, and research opportunities
+          </p>
           <h1><span>Hello,</span><span>my name is</span><strong>Shuvangee.</strong></h1>
           <p>I turn "this could be easier" into products.</p>
         </div>
@@ -100,8 +114,16 @@
               <p class="eyebrow">Education</p>
               <h2>Illinois Institute of Tech</h2>
               <p>Bachelor of Science in Computer Science</p>
-              <p>GPA: 3.8 / 4.0</p>
+              <p>GPA: 3.7 / 4.0</p>
               <p>Dean's List: Spring '24 - Spring '26</p>
+              <div class="organizations">
+                <p>Organizations</p>
+                <ul>
+                  <li>President, Association for Computing Machinery - Women in Computing</li>
+                  <li>President, F1 Club</li>
+                  <li>Secretary, IEEE</li>
+                </ul>
+              </div>
             </div>
           </div>
 
@@ -138,6 +160,66 @@
         </aside>
       </section>
 
+      <section class="skills-section" id="skills" aria-label="Skills">
+        <div class="section-heading">
+          <p class="eyebrow">Skills</p>
+        </div>
+        <div class="skills-subsection">
+          <h2>Technical Skills</h2>
+          <div class="skills-grid technical-skills">
+            <div>
+              <h3>Programming Languages</h3>
+              <p>Python, Java, C/C++, JavaScript, TypeScript, Ruby, SQL, HTML/CSS</p>
+            </div>
+            <div>
+              <h3>AI / Machine Learning</h3>
+              <p>Machine Learning, Scikit-learn, Pandas, NumPy, Model Evaluation, Feature Engineering, Classification Models</p>
+            </div>
+            <div>
+              <h3>LLM &amp; Agentic AI</h3>
+              <p>Anthropic Claude, Claude API, LLM Application Development, Prompt Engineering, AI Agents, Agentic AI Development, Tool Use / Function Calling, Model Context Protocol</p>
+            </div>
+            <div>
+              <h3>Web &amp; Software Development</h3>
+              <p>React.js, Node.js, REST APIs, APIs, Web Development, Web Design</p>
+            </div>
+            <div>
+              <h3>Databases &amp; Data Systems</h3>
+              <p>MySQL, Relational Database Design, Query Optimization, Data Structures, Algorithms, Object-Oriented Programming</p>
+            </div>
+            <div>
+              <h3>Tools &amp; Platforms</h3>
+              <p>Git, GitHub, Jupyter, Linux/Bash, Agile, Scrum</p>
+            </div>
+            <div>
+              <h3>Data &amp; Business Analysis</h3>
+              <p>Financial Data, Financial Analysis, Analytical Skills, A/B Testing, Excel, Tableau</p>
+            </div>
+          </div>
+        </div>
+        <div class="skills-subsection soft-skills-section">
+          <h2>Soft Skills</h2>
+          <div class="skills-grid soft-skills">
+            <div>
+              <h3>Communication &amp; Teaching</h3>
+              <p>Public Speaking, Teaching, Technical Mentorship, Higher Education Outreach, Communication</p>
+            </div>
+            <div>
+              <h3>Leadership &amp; Collaboration</h3>
+              <p>Leadership, Team Leadership, Leadership Management, Team Problem Solving, Volunteering</p>
+            </div>
+            <div>
+              <h3>Problem Solving &amp; Research</h3>
+              <p>Problem Solving, Research Skills, Computational Thinking, Analytical Thinking, Critical Thinking</p>
+            </div>
+            <div>
+              <h3>Event &amp; Community Building</h3>
+              <p>Event Planning, Student Engagement, Community Outreach</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="projects-section" id="projects" aria-label="Projects">
         <div class="section-heading">
           <p class="eyebrow">Projects</p>
@@ -156,19 +238,28 @@
             <p>Built ingestion-to-API ML pipeline and reached 87% accuracy across Random Forest, KNN, SVM, Naive Bayes, and Decision Tree models.</p>
           </article>
           <a class="project-item" href="https://github.com/shuvangee/F1-Database-Management-System" target="_blank" rel="noreferrer">
-            <span>03</span>
+            <div class="project-meta">
+              <span>03</span>
+              <svg class="project-github" viewBox="0 0 24 24" aria-label="View project on GitHub"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-6.5a5.1 5.1 0 0 0-1.4-3.6 4.8 4.8 0 0 0-.1-3.4s-1.1-.3-3.5 1.3a12.2 12.2 0 0 0-6 0C6.6.7 5.5 1 5.5 1a4.8 4.8 0 0 0-.1 3.4A5.1 5.1 0 0 0 4 8c0 4.5 3 6.5 6 6.5-.4.4-.8 1.1-.9 2.1-1.7.8-3.1.3-4.1-1.3 0 0-.8-1.5-2-1.6 0 0-1.3 0-.1.8 0 0 .9.4 1.5 2 0 0 .8 2.6 4.6 1.8V22"/></svg>
+            </div>
             <h3>F1 Database Management System</h3>
             <p><strong>Python, MySQL, Tabulate</strong></p>
             <p>Created role-based Admin/User CLI over 8 relational tables and optimized JOIN queries to reduce response time by 40%.</p>
           </a>
           <a class="project-item" href="https://github.com/shuvangee/Shell-Lab" target="_blank" rel="noreferrer">
-            <span>04</span>
+            <div class="project-meta">
+              <span>04</span>
+              <svg class="project-github" viewBox="0 0 24 24" aria-label="View project on GitHub"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-6.5a5.1 5.1 0 0 0-1.4-3.6 4.8 4.8 0 0 0-.1-3.4s-1.1-.3-3.5 1.3a12.2 12.2 0 0 0-6 0C6.6.7 5.5 1 5.5 1a4.8 4.8 0 0 0-.1 3.4A5.1 5.1 0 0 0 4 8c0 4.5 3 6.5 6 6.5-.4.4-.8 1.1-.9 2.1-1.7.8-3.1.3-4.1-1.3 0 0-.8-1.5-2-1.6 0 0-1.3 0-.1.8 0 0 .9.4 1.5 2 0 0 .8 2.6 4.6 1.8V22"/></svg>
+            </div>
             <h3>Unix Shell with Job Control</h3>
             <p><strong>C, Linux, Unix Processes, Signals, Debugging</strong></p>
             <p>Implemented a Unix shell with command execution, foreground/background jobs, built-ins, signal forwarding, zombie reaping, and trace-based testing.</p>
           </a>
           <a class="project-item" href="https://github.com/shuvangee/Dynamic-Memory-Allocator-" target="_blank" rel="noreferrer">
-            <span>05</span>
+            <div class="project-meta">
+              <span>05</span>
+              <svg class="project-github" viewBox="0 0 24 24" aria-label="View project on GitHub"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-6.5a5.1 5.1 0 0 0-1.4-3.6 4.8 4.8 0 0 0-.1-3.4s-1.1-.3-3.5 1.3a12.2 12.2 0 0 0-6 0C6.6.7 5.5 1 5.5 1a4.8 4.8 0 0 0-.1 3.4A5.1 5.1 0 0 0 4 8c0 4.5 3 6.5 6 6.5-.4.4-.8 1.1-.9 2.1-1.7.8-3.1.3-4.1-1.3 0 0-.8-1.5-2-1.6 0 0-1.3 0-.1.8 0 0 .9.4 1.5 2 0 0 .8 2.6 4.6 1.8V22"/></svg>
+            </div>
             <h3>Dynamic Memory Allocator</h3>
             <p><strong>C, Memory Management, Pointer Arithmetic, Heap Optimization</strong></p>
             <p>Built malloc, free, and realloc with 8-byte alignment, heap consistency checks, fragmentation reduction, and trace-driven performance tuning.</p>
@@ -182,6 +273,36 @@
         </div>
       </section>
 
+      <section class="testimonial-section" id="testimonial" aria-label="Testimonial">
+        <div class="section-heading">
+          <p class="eyebrow">Testimonial</p>
+        </div>
+        <div class="testimonial-grid">
+          <article class="testimonial-card">
+            <div class="testimonial-attribution">
+              <a href="https://www.linkedin.com/in/anwesa-goswami-52756a176/" target="_blank" rel="noreferrer">Anwesa Goswami</a>
+              <span>Software Infrastructure Engineer at JPMorganChase</span>
+              <span>Mentor, P33: Strong Start Program · December 13, 2023</span>
+            </div>
+            <blockquote>
+              <p>I had the great opportunity to mentor Shuvangee and two other students through the P33: Strong Start Program, where they were given the task of creating a budgeting application over 10 weeks. I was impressed by how quickly Shuvangee picked up industry software engineering practices and how eager she was to learn. Their hard work paid off, and they delivered an excellent, well-tested, fully designed mockup by the end of the course. I look forward to seeing her continue to excel throughout her career!</p>
+            </blockquote>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact-section" id="contact" aria-label="Contact Shuvangee">
+        <div>
+          <p class="eyebrow">Let's Connect</p>
+          <h2>Let’s build something useful.</h2>
+          <p>I’m always open to opportunities where I can contribute to meaningful technology projects, learn from strong teams, and build useful systems across software, data, AI/ML, and research.</p>
+        </div>
+        <a class="contact-button email-link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=shuvangee.seth2027%40gmail.com" target="_blank" rel="noreferrer" data-email="shuvangee.seth2027@gmail.com">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>
+          Contact me
+        </a>
+      </section>
+
       <section class="beyond-section" id="beyond-code" aria-label="Beyond code">
         <div class="section-heading">
           <p class="eyebrow">Beyond Code</p>
@@ -189,11 +310,15 @@
         <div class="insta-grid">
           <button class="post-tile has-photo" type="button" data-post="0" aria-label="Open Accelerate Chicago post">
             <img src="assets/accelerate-chicago-techicago-2026.jpg" alt="Accelerate Chicago Techicago Week volunteers" />
-            <span>Techicago Week</span>
+            <span>Techicago Week<small>June 22–24, 2026</small></span>
           </button>
           <button class="post-tile has-photo" type="button" data-post="1" aria-label="Open SOAR at IIT post">
             <img src="assets/soar-iit-2026.jpg" alt="SOAR at IIT group photo" />
-            <span>SOAR</span>
+            <span>SOAR<small>May–August 2026</small></span>
+          </button>
+          <button class="post-tile has-photo" type="button" data-post="2" aria-label="Open Apple Meet and Connect post">
+            <img src="assets/apple-meet-connect-2025-1.jpg" alt="Shuvangee at Apple's Meet and Connect event" />
+            <span>Apple Meet &amp; Connect<small>November 7, 2025</small></span>
           </button>
         </div>
       </section>
@@ -205,18 +330,23 @@
         <button class="modal-arrow modal-prev" type="button" aria-label="Previous picture">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
         </button>
-        <div class="modal-photo" aria-label="Photo placeholder"></div>
+        <div class="modal-photo" aria-label="Post photo">
+          <img id="modal-image" alt="" />
+        </div>
         <button class="modal-arrow modal-next" type="button" aria-label="Next picture">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
         </button>
         <div class="modal-caption">
-          <p id="post-title">Design notes</p>
+          <div class="modal-caption-copy">
+            <p id="post-title">Design notes</p>
+            <time id="post-date"></time>
+          </div>
           <span id="post-counter">1 / 3</span>
         </div>
       </div>
     </div>
 
     <footer>made with ❤️ by shuvangee</footer>
-    <script src="script.js"></script>
+    <script src="script.js?v=6"></script>
   </body>
 </html>
