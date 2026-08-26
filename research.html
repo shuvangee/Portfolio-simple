@@ -158,6 +158,84 @@
             </section>
           </div>
         </article>
+
+        <article class="week-entry">
+          <header>
+            <p>Week 5</p>
+            <time datetime="2026-07-06">July 6 – July 12, 2026</time>
+            <h3>CLIO Keyword Search Optimization</h3>
+          </header>
+          <div class="week-details">
+            <section>
+              <h4>Situation</h4>
+              <p>CLIO’s keyword search scanned all tags and blobs for broad queries such as <code>search("", "", "weather simulation")</code>, making search expensive as blob counts grew into the thousands or hundreds of thousands.</p>
+            </section>
+            <section>
+              <h4>Task</h4>
+              <p>Optimize keyword search for Issue #688 by adding a reverse index for blobs, while keeping the scope focused on keyword search rather than AI semantic or vector search.</p>
+            </section>
+            <section>
+              <h4>Action</h4>
+              <p>Implemented an in-memory keyword index mapping keywords to blob IDs, plus blob-to-keyword metadata for update and delete handling. Added BM25-style ranking, lazy index refresh, unit tests, benchmark tooling, CI fixes, and benchmarks for 100 to 100,000 blobs across high-match and low-match workloads.</p>
+            </section>
+            <section class="result">
+              <h4>Result</h4>
+              <p>Created and pushed a PR to the upstream dev branch for review. Verified builds, installed binaries, unit tests, runtime benchmarks, and GitHub Actions fixes. The optimization moved broad keyword search away from scanning all blobs and toward candidate-based lookup through the reverse index.</p>
+            </section>
+          </div>
+        </article>
+
+        <article class="week-entry">
+          <header>
+            <p>Week 9</p>
+            <time datetime="2026-08-03">August 3 – August 9, 2026</time>
+            <h3>Keyword Search Index Audit</h3>
+          </header>
+          <div class="week-details">
+            <section>
+              <h4>Situation</h4>
+              <p>The original keyword-search work on <code>688-optimize-keyword-search</code> needed to be evaluated against the newer optional indexer work on <code>905-indexer-chimod</code>.</p>
+            </section>
+            <section>
+              <h4>Task</h4>
+              <p>Compare both branches, identify incorporated and missing features, evaluate restart persistence and scalability, and recommend the correct implementation direction without changing code.</p>
+            </section>
+            <section>
+              <h4>Action</h4>
+              <p>Created <code>905-indexer-audit</code> from the new branch and reviewed architecture, BM25 search, indexing, mutation handling, snapshot and WAL recovery, restart tests, memory protection, and benchmarks.</p>
+            </section>
+            <section class="result">
+              <h4>Result</h4>
+              <p>Confirmed that 905 has stronger modular architecture, asynchronous maintenance, scoped indexing, and persistence. Identified missing inverted posting lists, a crash-consistency window for pending updates, full-index query scans, limited memory safeguards, and missing cold and warm scaling measurements. Recommended retaining 905 and selectively adapting useful optimizations and benchmarks from 688.</p>
+            </section>
+          </div>
+        </article>
+
+        <article class="week-entry">
+          <header>
+            <p>Weeks 10 &amp; 11</p>
+            <time datetime="2026-08-10">August 10 – August 23, 2026</time>
+            <h3>CLIO Filesystem Persistence and macFUSE Support</h3>
+          </header>
+          <div class="week-details">
+            <section>
+              <h4>Situation</h4>
+              <p>CLIO’s FUSE filesystem corrupted Git repositories during large clones, and the macOS pip package did not correctly include or configure the macFUSE adapter.</p>
+            </section>
+            <section>
+              <h4>Task</h4>
+              <p>Debug both problems independently, enable persistent file-backed storage, verify Linux kernel cloning and restart recovery, and repair macOS wheel packaging.</p>
+            </section>
+            <section>
+              <h4>Action</h4>
+              <p>Created separate Git worktrees and branches for each issue. Traced Git corruption to the cache and indexer route, changed the filesystem’s default path to durable replication, and updated macOS packaging to enable FUSE, detect macFUSE, include the adapter binary, and handle Darwin-specific interfaces.</p>
+            </section>
+            <section class="result">
+              <h4>Result</h4>
+              <p>Successfully cloned and checked out 95,776 Linux kernel files with <code>git fsck --full</code> passing. Verified persistent data recovery after restarting CLIO. Built and installed a macOS ARM64 wheel whose packaged <code>clio_cte_fuse</code> executable runs and links correctly to macFUSE. Both fixes were committed and pushed on separate branches.</p>
+            </section>
+          </div>
+        </article>
       </section>
     </main>
   </body>
