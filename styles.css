@@ -600,6 +600,20 @@ p {
   margin: 16px 0 0;
 }
 
+.reading-journal-link {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  margin-top: 14px;
+}
+
+.reading-journal-link a {
+  color: var(--maroon);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .hobby-card p:not(.eyebrow) {
   font-size: clamp(0.96rem, 1.25vw, 1.08rem);
   line-height: 1.5;
