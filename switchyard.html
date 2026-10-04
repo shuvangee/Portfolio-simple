@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Switchyard Case Study | Shuvangee</title>
+  <meta name="description" content="Building and evaluating an AI model router: matching 90.2% benchmark accuracy at 45.5% lower nominal cost, and learning why a simple rule beat a trained router." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header report-header">
+    <a class="back-link" href="index.html#projects" aria-label="Back to projects"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5" /><path d="m11 6-6 6 6 6" /></svg></a>
+  </header>
+  <main class="research-page case-study">
+    <section class="case-hero" aria-labelledby="case-title">
+      <p class="eyebrow">AI / Machine Learning · Case Study</p>
+      <h1 id="case-title">Switchyard</h1>
+      <p class="case-tagline">A router that picks the cheapest AI model that can still get the answer right</p>
+      <p class="case-intro">I built an adaptive AI routing system, then tested whether a trained router could outperform a simple rule. It didn’t. The rule became the default because the measured trade-off was better.</p>
+      <p class="case-stack">FastAPI / Next.js / Python / Scikit-learn / SQLite / Groq</p>
+      <div class="case-actions"><a href="https://github.com/shuvangee/Switchyard" target="_blank" rel="noreferrer">View GitHub ↗</a><a href="#results">Explore the results ↓</a></div>
+      <dl class="case-metrics">
+        <div><dt>Benchmark accuracy</dt><dd>90.2%</dd></div>
+        <div><dt>Lower nominal cost</dt><dd>45.5%</dd></div>
+        <div><dt>Lower average latency</dt><dd>29.8%</dd></div>
+      </dl>
+      <p class="case-note">D2 versus always using the 120B model, on 92 automatically graded tasks. Nominal cost uses recorded token counts and registry prices; billed API cost for this comparison was $0.00 on Groq’s free tier.</p>
+    </section>
+
+    <section class="case-section" aria-labelledby="problem-title">
+      <p class="eyebrow">01 / The problem</p><h2 id="problem-title">How much model does a request need?</h2>
+      <p>Sending every request to a larger model can add cost and latency without improving every answer. Always choosing a smaller model can miss the tasks that need more capability. I wanted to measure whether routing could preserve answer quality while reducing usage of the larger model.</p>
+      <p>My work covered the full system: benchmark design, automated grading, real-model evaluation, the routing API and interface, and a learned alternative evaluated against simpler baselines.</p>
+    </section>
+
+    <section class="case-section" aria-labelledby="system-title">
+      <p class="eyebrow">02 / The system</p><h2 id="system-title">Two strategies, one request pipeline.</h2>
+      <ol class="case-flow" aria-label="Request routing pipeline"><li>Next.js interface</li><li>FastAPI + request analysis</li><li>Routing strategy</li><li>Groq model + response trace</li></ol>
+      <div class="case-columns">
+        <div><h3>D2: the preferred rule</h3><p>Send summarization to <code>gpt-oss-120b</code> and everything else to <code>gpt-oss-20b</code>. The policy is small enough to inspect directly and routes just 6 of the 92 evaluated tasks to the larger model.</p></div>
+        <div><h3>Learned-v2: the alternative</h3><p>A shallow decision tree predicts whether to use 120B from information available before execution: category, difficulty, structured-output requirements, and estimated input tokens. It is trained offline and remains selectable for comparison.</p></div>
+      </div>
+      <p class="case-source"><a href="https://github.com/shuvangee/Switchyard/blob/main/docs/architecture/overview.md" target="_blank" rel="noreferrer">Architecture and training flow ↗</a></p>
+    </section>
+
+    <section class="case-section" aria-labelledby="evaluation-title">
+      <p class="eyebrow">03 / Evaluation design</p><h2 id="evaluation-title">Measure the answer, not just the routing label.</h2>
+      <p>I built 104 tasks across eight categories: extraction, classification, summarization, math, reasoning, coding, debugging, and structured output. Automated grading covered 92 tasks using checks including exact answers, label matching, JSON validation, sandboxed code execution, and required facts. The other 12 stayed manual-only and were excluded from the reported accuracy.</p>
+      <p>Both models had recorded outcomes for the same 92 tasks. Leave-one-out cross-validation evaluated routing choices on held-out tasks; each choice was scored using the selected model’s recorded correctness, token cost, and latency. This measures the outcome of the whole system rather than whether a classifier reproduced an escalation label.</p>
+      <p>A broader category rule initially reached 91.3% accuracy on the data used to derive it, but fell to 88.0% under cross-validation. The narrower D2 rule retained 90.2%. That difference made evaluation design central to choosing the default.</p>
+      <p class="case-source"><a href="https://github.com/shuvangee/Switchyard/blob/main/docs/case-study/DECISIONS.md" target="_blank" rel="noreferrer">Evaluation and selection decisions ↗</a></p>
+    </section>
+
+    <section class="case-section" id="results" aria-labelledby="results-title">
+      <p class="eyebrow">04 / Measured results</p><h2 id="results-title">The simpler router earned its place.</h2>
+      <div class="case-table-wrap" role="region" aria-label="Strategy comparison, scroll horizontally on small screens" tabindex="0">
+        <table class="case-table"><caption>Same 92 tasks · real Groq model outcomes · September 27, 2026</caption><thead><tr><th scope="col">Strategy</th><th scope="col">Accuracy</th><th scope="col">Total nominal cost</th><th scope="col">Avg. latency</th><th scope="col">120B usage</th></tr></thead><tbody><tr><th scope="row">Always 20B</th><td>88.0% (81/92)</td><td>$0.008108</td><td>646 ms</td><td>0.0%</td></tr><tr><th scope="row">Always 120B</th><td>90.2% (83/92)</td><td>$0.015020</td><td>927 ms</td><td>100.0%</td></tr><tr class="preferred-result"><th scope="row">D2 rule · preferred</th><td>90.2% (83/92)</td><td>$0.008193</td><td>651 ms</td><td>6.5%</td></tr><tr><th scope="row">Learned router</th><td>88.0% (81/92)</td><td>$0.009477</td><td>687 ms</td><td>23.9%</td></tr><tr><th scope="row">Oracle · theoretical only</th><td>93.5% (86/92)</td><td>$0.008187</td><td>655 ms</td><td>5.4%</td></tr></tbody></table>
+      </div>
+      <p class="case-note">Costs are totals across the 92 tasks, not per-request prices or invoices. Latency reflects recorded model calls selected by each strategy, not a fresh end-to-end production load test. The oracle assumes prior knowledge of which answer is correct; it is a theoretical upper bound, never a deployable strategy.</p>
+      <p>D2 matched the larger model’s 83 correct answers while using it only 6.5% of the time. The learned router used it 23.9% of the time and produced 81 correct answers. On this benchmark, the additional complexity bought neither higher accuracy nor lower cost.</p>
+      <p class="case-source"><a href="https://github.com/shuvangee/Switchyard/blob/main/backend/app/routing/learned/artifacts/learned-v2.manifest.json" target="_blank" rel="noreferrer">Exact results and training manifest ↗</a></p>
+    </section>
+
+    <section class="case-section" aria-labelledby="lesson-title">
+      <p class="eyebrow">05 / What I learned</p><h2 id="lesson-title">A working learned router can still be the wrong default.</h2>
+      <p>Only eight tasks had different correctness outcomes between the models, and only five favored escalating to 120B. That sparse signal is a plausible explanation for the learned router’s result; it is not evidence that learned routing fails in general.</p>
+      <p>I also compared logistic regression, which scored 89.1% while using 120B for 41.3% of tasks. The decision tree’s one-task accuracy deficit was treated as a practical tie, with lower nominal cost breaking it. That was an engineering selection rule, not a statistical demonstration that the models were equivalent.</p>
+      <p>The final decision was to keep both strategies available and make D2 the application’s default. Reporting the negative result made the project more useful: the next iteration has a concrete baseline to beat.</p>
+    </section>
+
+    <section class="case-section" aria-labelledby="limits-title">
+      <p class="eyebrow">06 / Scope and next steps</p><h2 id="limits-title">What these results can support.</h2>
+      <p>This is a small, project-designed benchmark with two candidate models and 12 tasks outside automated scoring. Matching accuracy here does not guarantee the same result on new traffic, and the tagline describes the routing objective rather than a guarantee that every answer will be correct.</p>
+      <p>Cross-validation informed strategy selection on this dataset. A separate, untouched evaluation set would provide stronger evidence of generalization. Free-tier costs and recorded call latency also do not establish paid-deployment economics or production performance.</p>
+      <p>The repository documents a runnable application and production build instructions, but does not provide a live deployment URL. Without a provider key, demo mode illustrates routing and traces using a mock fallback; those responses are separate from the real-model benchmark evidence.</p>
+      <p>My next steps would be to expand the tasks where the models disagree, evaluate on fresh data, and test whether a third model helps on tasks both current models miss before adding more routing complexity.</p>
+    </section>
+
+    <section class="case-section case-evidence" aria-labelledby="evidence-title">
+      <p class="eyebrow">Explore the evidence</p><h2 id="evidence-title">Reproducible, down to the recorded outcomes.</h2>
+      <p>Adapted from the project README and supporting records. The comparison table uses the committed learned-v2 manifest.</p>
+      <div class="case-actions"><a href="https://github.com/shuvangee/Switchyard/blob/main/README.md" target="_blank" rel="noreferrer">README ↗</a><a href="https://github.com/shuvangee/Switchyard/blob/main/docs/case-study/METRICS.md" target="_blank" rel="noreferrer">Metrics ↗</a><a href="https://github.com/shuvangee/Switchyard/blob/main/docs/case-study/EXPERIMENTS.md" target="_blank" rel="noreferrer">Experiment log ↗</a></div>
+      <a class="case-study-link" href="index.html#projects">← Back to all projects</a>
+    </section>
+  </main>
+</body>
+</html>
